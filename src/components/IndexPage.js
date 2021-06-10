@@ -28,7 +28,7 @@ const AllSneakers = (props) => {
           <div key={index}>
             <Link to={`/sneakers/${sneaker.id}`}>
               <h3>
-                {sneaker.brand} {sneaker.name}
+                {sneaker.name}
               </h3>
               <img src={sneaker.img} alt={sneaker.name} />
             </Link>

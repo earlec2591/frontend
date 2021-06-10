@@ -13,8 +13,16 @@ const Login = (props) => {
       email,
       password
     })
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
+    .then(res=> {
+      console.log(res.data); // store to localstorage
+      navigate('/sneakers');
+      window.localStorage.setItem('user_id', res.data.id);
+      var user_id = window.localStorage.getItem('user_id');
+    })
+    .catch(err=>{
+      console.log(err);
+      window.alert("Invalid Login")
+    })
   }
   
   return(
@@ -37,7 +45,7 @@ const Login = (props) => {
           />
         </div>
         <div className="invButtons">
-        <button onClick={ () => navigate('/index')} className="homeBtn">Login</button>
+        <button className="homeBtn">Login</button>
         <h5>Not a member? Click <Link to='/signup'>here</Link> to signup!</h5>
         </div>
       </form>

@@ -14,6 +14,7 @@ const ShoeId = (props) => {
         setSneaker(res.data);
         setIsLoaded(true);
         console.log(res.data);
+        window.localStorage.setItem('shoe_id', res.data.id);
       })
       .catch((err) => {
         console.log(err);

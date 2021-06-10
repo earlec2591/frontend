@@ -17,7 +17,7 @@ function App() {
         <SignUp path='/signup' />
         <About path='/about' />
         <Account path='/account' />
-        <IndexPage path='/index' />
+        <IndexPage path='/sneakers' />
         <ShoeId path='/sneakers/:sneaker_id' />
       </Router>
     </div>

@@ -13,8 +13,12 @@ const Logout = (props) => {
       })
       .catch((err) => {
         console.log(err);
+      })
+      .finally((err) => {
+        window.localStorage.clear();
+        console.log(window.localStorage.getItem('user'));
       });
-  };
+    }
   return (
     <div class="container">
       <form onSubmit={submitHandler}>

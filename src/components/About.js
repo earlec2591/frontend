@@ -1,6 +1,6 @@
 import React from 'react';
 import CssBaseline from '@material-ui/core/CssBaseline';
-import Link from '@material-ui/core/Link';
+import { Link } from '@reach/router';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
@@ -9,10 +9,8 @@ import Container from '@material-ui/core/Container';
 function Copyright() {
   return (
     <Typography variant="body2" color="textSecondary" align="center">
-      {'Copyright © '}
-      <Link color="inherit" href="https://material-ui.com/">
-        SneakerSaga
-      </Link>{' '}
+      {'Copyright © SneakerSaga '}
+      {' '}
       {new Date().getFullYear()}
       {'.'}
     </Typography>
@@ -50,9 +48,12 @@ export default function About() {
           About Us
         </Typography>
         <form className={classes.form} noValidate>
-          <p>SneakerSaga was founded by three friends who shared a love for sneakers, new and old. By utilizing their skills, they began to research and compile a list of every sneaker that has graced the grounds we walk on. SneakerSaga was built with you in mind.</p>
-          <p>At SneakerSaga, we wanted to give you a platform that allows you the chance to leave reviews on sneakers you own, add sneakers to a wishlist, and get incredible details on the sneakers you love. SneakerSaga is a place for all types of sneaker lovers. Enjoy!</p>
+          <p>SneakerSaga was founded by three friends who shared a love for Air Jordans, new and old. By utilizing their skills, they began to research and compile a list of every retro'd Jordan that has graced the very ground we walk on. SneakerSaga was built to share our passion.</p>
+          <p>At SneakerSaga, we wanted to give you a platform that allows you to leave reviews on Jordans you own, add them to a wishlist, and get incredible details on the sneakers you love. SneakerSaga is a safe place for any and all lovers of footwear. Enjoy!</p>
         </form>
+      </div>
+      <div>
+        <h3><Link to='/signin'>Login</Link> or <Link to='/signup'>signup</Link> to enter.</h3>
       </div>
       <Box mt={8}>
         <Copyright />

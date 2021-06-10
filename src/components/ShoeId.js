@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { navigate, Link } from "@reach/router";
 import Review from "./Review";
 
 const ShoeId = (props) => {
-  const [sneaker, setSneaker] = useState([]);
+  const [sneaker, setSneaker] = useState({});
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     axios
@@ -12,11 +12,13 @@ const ShoeId = (props) => {
       .then((res) => {
         console.log(res.data);
         setSneaker(res.data);
+        setIsLoaded(true);
+        console.log(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
+  }, []);
 
   return (
     <div>
@@ -26,12 +28,12 @@ const ShoeId = (props) => {
       </h2>
       <img src={sneaker.img} alt={sneaker.name} />
       <p>
-        Release Date:{" "}
+        <b>Release Date:</b>{" "}
         {new Date(sneaker.release_year).toLocaleDateString("en-us")}
       </p>
-      <p>History: {sneaker.desc}</p>
-      <Review />
-      </div>
+      <p><b>History:</b> {sneaker.desc}</p>
+      {sneaker.reviews && <Review sneaker={sneaker} />}
+    </div>
   );
 };
 

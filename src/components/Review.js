@@ -1,30 +1,29 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import { navigate, Link } from "@reach/router";
+import { navigate } from "@reach/router";
 
 const Review = (props) => {
-  const [review, setReview] = useState([]);
+  const [sneaker, setSneaker] = useState(props.sneaker);
+  const [oneCreator, setOneCreator] = useState([]);
+  const [allUsers, setAllUsers] = useState([]);
 
   useEffect(() => {
     axios
-      .get("http://18.117.145.31/review/" + props.review_id)
+      .get("http://18.117.145.31/user/")
       .then((res) => {
         console.log(res.data);
-        setReview(res.data);
       })
       .catch((err) => {
         console.log(err);
       });
-  });
-
+  }, []);
   const submitHandler = (e) => {
     e.preventDefault();
-
     axios
-      .post("http://18.117.145.31/review/" + props.review_id)
+      .post("http://18.117.145.31/review/")
       .then((res) => {
         console.log(res.data);
-        setReview(res.data);
+        setSneaker(res.data);
       })
       .catch((err) => {
         console.log(err);
@@ -33,7 +32,7 @@ const Review = (props) => {
 
   return (
     <div>
-      <label for="textarea">Leave a review: </label>
+      <label for="textarea"><b>Leave a review: </b></label>
       <textarea
         id="textarea"
         cols="95"
@@ -41,14 +40,23 @@ const Review = (props) => {
         placeholder="Leave your review here..."
       ></textarea>
       <br />
-      <div className="container">
-        {review.map((review, index) => (
-          <div key={index}>
-            <h3>{review.review}</h3>
-            <h5>Reviewed By: {review.creator}</h5>
-          </div>
-        ))}
+      <div>
+        <table>
+          <thead>
+            <th>Review</th>
+            <th>Reviewer</th>
+          </thead>
+          {sneaker.reviews.map((x) => (
+            <tbody key={x.id}>
+              <tr>
+                <td>{x.review}</td>
+                <td>{x.creator.first_name}</td>
+              </tr>
+            </tbody>
+          ))}
+        </table>
       </div>
+
       <div className="invButtons">
         <button onSubmit={submitHandler} className="submitBtn">
           Submit Review

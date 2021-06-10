@@ -1,34 +1,34 @@
-import React, { useState } from 'react';
-import { navigate } from '@reach/router';
-import axios from 'axios';
+import React, { useState } from "react";
+import { navigate } from "@reach/router";
+import axios from "axios";
 
 const Signup = (props) => {
-  const [ firstName, setFirstName ] = useState("");
-  const [ lastName, setLastName ] = useState("");
-  const [ email, setEmail ] = useState("");
-  const [ password, setPassword ] = useState("");
-  const [ confPassword, setConfPassword ] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [confPassword, setConfPassword] = useState("");
 
-  const onSubmitHandler = e => {
+  const onSubmitHandler = (e) => {
     e.preventDefault();
 
-    axios.post('http://18.117.145.31/', {
-      firstName,
-      lastName,
-      email,
-      password,
-      confPassword
-    })
-    .then(res=>console.log(res))
-    .catch(err=>console.log(err))
-  }
+    axios
+      .post("http://18.117.145.31/user/register/", {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+      })
+      .then((res) => console.log(res))
+      .catch((err) => console.log(err));
+  };
 
-  return(
+  return (
     <div>
       <h1>SneakerSaga</h1>
       <h2>Create An Account</h2>
       <form onSubmit={onSubmitHandler}>
-        <div className='registration'>
+        <div className="registration">
           <label>First Name</label>
           <input
             type="text"
@@ -59,11 +59,13 @@ const Signup = (props) => {
             name="confirmPassword"
             onChange={(e) => setConfPassword(e.target.value)}
           />
-          <button onClick={ () => navigate('/index')} className="homeBtn">Submit</button>
+          <button onClick={() => navigate("/signin")} className="homeBtn">
+            Submit
+          </button>
         </div>
       </form>
     </div>
-  )
-}
+  );
+};
 
-export default Signup; 
+export default Signup;
